@@ -1,0 +1,30 @@
+.input {
+  width: 100%;
+  padding: 1.1rem 1.4rem;
+  background: rgba(0, 0, 0, 0.2);
+  border: 2px solid var(--glass-border);
+  border-radius: 14px;
+  color: white;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+  outline: none;
+  font-family: inherit;
+  text-transform: uppercase;
+}
+
+.input:focus {
+  border-color: var(--primary);
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+.inputError {
+  border-color: var(--error);
+}
+
+.input.inputError:focus {
+  border-color: var(--error);
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15);
+  background: rgba(239, 68, 68, 0.05);
+}
