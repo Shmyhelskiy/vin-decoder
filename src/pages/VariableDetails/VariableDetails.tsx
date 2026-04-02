@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, BookOpen } from 'lucide-react';
 import { useVehicleVariables } from '../../hooks/useVehicleVariables';
-import styles from '../Variables/Variables.module.css';
+import styles from './VariableDetails.module.css';
 
 export default function VariableDetails() {
   const { variableId } = useParams<{ variableId: string }>();

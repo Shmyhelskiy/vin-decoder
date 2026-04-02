@@ -4,10 +4,18 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { vinDecoderSchema, type VinDecoderFormData } from '../lib/schemas/forms/vin-decoder';
 import { useVinHistoryStore } from '../store/vin-history-store';
 import { useDecodeVin } from './useDecodeVin';
+import { useShallow } from 'zustand/shallow';
 
 export const useVinDecoderForm = () => {
-  const addToHistory = useVinHistoryStore((state) => state.addToHistory);
+  // const addToHistory = useVinHistoryStore((state) => state.addToHistory);
+  const { addToHistory, history } = useVinHistoryStore(
+  useShallow((state) => ({
+    history: state.history,
+    addToHistory: state.addToHistory,
+  }))
+);
   const [submittedVin, setSubmittedVin] = useState('');
+  const [isAlreadyInHistory, setIsAlreadyInHistory] = useState(false);
 
   const { data, isFetching, isSuccess, isError } = useDecodeVin(submittedVin);
 
@@ -30,6 +38,9 @@ export const useVinDecoderForm = () => {
 
   const onSubmit = (formData: VinDecoderFormData) => {
     const uppercaseVin = formData.vin.toUpperCase();
+
+    const isAlreadyInHistory = history.some(item => item.vin === uppercaseVin);
+    setIsAlreadyInHistory(isAlreadyInHistory);
     setSubmittedVin(uppercaseVin);
   };
 
@@ -38,6 +49,7 @@ export const useVinDecoderForm = () => {
     onSubmit: form.handleSubmit(onSubmit),
     isFetching,
     data,
-    isError
+    isError,
+    isAlreadyInHistory
   };
 };

@@ -183,3 +183,12 @@
     width: 40%;
   }
 }
+
+.variableLink {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.variableLink:hover {
+  text-decoration: underline;
+}

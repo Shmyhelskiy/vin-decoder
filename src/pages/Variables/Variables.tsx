@@ -1,27 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import { useVehicleVariables } from '../../hooks/useVehicleVariables';
 import PageHeader from '../../components/ui/PageHeader/PageHeader';
 import styles from './Variables.module.css';
-
-const VariableItem = React.memo(({ variable }: { variable: any }) => (
-  <Link
-    to={`/variables/${variable.ID}`}
-    className={styles.listItem}
-  >
-    <div className={styles.leftContent}>
-      <span className={styles.groupName}>{variable.GroupName || 'Other'}</span>
-      <h3 className={styles.variableName}>{variable.Name}</h3>
-    </div>
-    <div 
-      className={styles.rightContent}
-      dangerouslySetInnerHTML={{ __html: variable.Description || 'Description not available.' }}
-    />
-  </Link>
-));
-
-VariableItem.displayName = 'VariableItem';
+import VariableItem from '../../components/VariableItem/VariableItem';
 
 const Variables: React.FC = () => {
   const { data: variables, isLoading, isError } = useVehicleVariables();
@@ -93,4 +75,4 @@ const Variables: React.FC = () => {
   );
 };
 
-export default Variables;
+export default Variables;

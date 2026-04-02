@@ -1,13 +1,14 @@
 import React from 'react';
-import { Search, AlertCircle } from 'lucide-react';
+import { Search } from 'lucide-react';
 import styles from './VinForm.module.css';
 import { Input } from '../../../components/ui/Input/Input';
 import Button from '../../../components/ui/Button/Button';
 import PageHeader from '../../../components/ui/PageHeader/PageHeader';
 import { useVinDecoderForm } from '../../../hooks/useVinDecoderForm';
+import { Alert } from '../../../components/ui/Alert/Alert';
 
 const VinForm: React.FC = () => {
-  const { form, onSubmit, isFetching } = useVinDecoderForm();
+  const { form, onSubmit, isFetching, isAlreadyInHistory } = useVinDecoderForm();
   const { register, formState: { errors } } = form;
   
   return (
@@ -32,10 +33,15 @@ const VinForm: React.FC = () => {
           />
           
           {errors.vin && (
-            <div className={styles.errorMessage}>
-              <AlertCircle size={14} />
-              <span>{errors.vin.message}</span>
-            </div>
+            <Alert type="error">
+              {errors.vin.message}
+            </Alert>
+          )}
+
+          {isAlreadyInHistory && !errors.vin && (
+            <Alert type="info">
+              This VIN is already in history.
+            </Alert>
           )}
         </div>
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useVinHistoryStore } from '../../../store/vin-history-store';
 import styles from './VinHistory.module.css';
+import { Link } from 'react-router-dom';
 
 const VinHistory: React.FC = () => {
   const history = useVinHistoryStore((state) => state.history);
@@ -17,6 +18,7 @@ const VinHistory: React.FC = () => {
   const activeItem = history.find((item) => item.vin === selectedVin);
 
   if (history.length === 0) return null;
+  console.log( activeItem)
 
   return (
     <div className={styles.resultsContainer}>
@@ -44,7 +46,11 @@ const VinHistory: React.FC = () => {
             <tbody>
               {activeItem?.data.map((item, index) => (
                 <tr key={`${item.VariableId}-${index}`}>
-                  <td className={styles.variableCell}>{item.Variable}</td>
+                  <td className={styles.variableCell}>
+                    <Link to={`/variables/${item.VariableId}`} className={styles.variableLink}>
+                      {item.Variable} 
+                    </Link>
+                    </td>
                   <td className={styles.valueCell}>{item.Value}</td>
                 </tr>
               ))}
