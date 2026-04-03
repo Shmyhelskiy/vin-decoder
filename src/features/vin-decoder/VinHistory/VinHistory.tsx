@@ -18,7 +18,6 @@ const VinHistory: React.FC = () => {
   const activeItem = history.find((item) => item.vin === selectedVin);
 
   if (history.length === 0) return null;
-  console.log( activeItem)
 
   return (
     <div className={styles.resultsContainer}>

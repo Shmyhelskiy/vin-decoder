@@ -1,73 +1,52 @@
-# React + TypeScript + Vite
+# VIN Decoder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Веб-застосунок для декодування VIN-номерів транспортних засобів за допомогою API NHTSA (National Highway Traffic Safety Administration).
 
-Currently, two official plugins are available:
+- **Розгорнутий застосунок:** [https://vin-decoder-coral.vercel.app/]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Функціонал
 
-## React Compiler
+- **Декодування VIN:** Можливість ввести VIN-номер та отримати детальну інформацію про транспортний засіб.
+- **Історія пошуку:** Збереження історії останніх 3 перевірених VIN-номерів для швидкого доступу.
+- **База змінних:** Окремий розділ для перегляду всіх доступних перемінних (Variables), які надає NHTSA, з їх описами.
+- **Валідація:** Перевірка формату VIN перед відправкою запиту.
+- **Адаптивний дизайн:** Коректне відображення на мобільних телефонах, планшетах та десктопах.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠 Технологічний стек
 
-## Expanding the ESLint configuration
+- **Frontend:** React 19, Vite, TypeScript
+- **Стилізація:** Tailwind CSS
+- **Управління станом:** Zustand
+- **Запити до API:** Axios, TanStack Query (React Query)
+- **Форми:** React Hook Form, Zod 
+- **Маршрутизація:** React Router
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 💻 Локальний запуск
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Щоб запустити проект локально, виконайте наступні кроки:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1. **Клонуйте репозиторій:**
+   ```bash
+   git clone <url-вашого-репозиторію>
+   cd vin-decoder
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2. **Встановіть залежності:**
+   ```bash
+   npm install
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3. **Запустіть сервер для розробки:**
+   ```bash
+   npm run dev
+   ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+4. **Відкрийте застосунок:**
+   За замовчуванням він буде доступний за адресою [http://localhost:5173]
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📄 Скріпти
+
+- `npm run dev` — запуск режиму розробки.
+- `npm run build` — збірка проекту для продакшену.
+- `npm run lint` — перевірка коду за допомогою ESLint.
+- `npm run preview` — локальний перегляд зібраного проекту.
